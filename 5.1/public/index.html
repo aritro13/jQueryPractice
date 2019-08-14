@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="assets/js/jquery-1.12.4.js"></script>
+</head>
+<body>
+    <button id="getButton" onclick="get()"> GET </button>
+    <pre id="getResponse"></pre>
+    <script>
+        function get(){
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8000/ajaxcall',
+                datatype: 'json'
+            })
+            .done(function(data){
+                console.log('GET response:', JSON.stringify(data, "", 2));
+                $('#getResponse').html(JSON.stringify(data, "", 2));
+            })
+            .fail(function(jqXHR, textStatus, err){
+                console.log('AJAX Error response: ',textStatus);
+            });
+        }
+    </script>
+</body>
+</html>
